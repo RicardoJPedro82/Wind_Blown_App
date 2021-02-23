@@ -10,8 +10,6 @@ from c_model_related import metrics_create_df
 # from wmillfailprev.c_model_related import metrics_create_df
 # from wmillfailprev.c_model_related import Trainer as tr
 import pandas as pd
-import ipdb
-
 import joblib
 from sklearn.preprocessing import StandardScaler
 
@@ -360,7 +358,6 @@ def train_and_pred(x_train):
     df_to_scale_dict['df_gen_bear'] = scaler_df_gen_bear.transform(df_to_scale_dict['df_gen_bear'])
     df_to_scale_dict['df_transformer'] = scaler_df_transformer.transform(df_to_scale_dict['df_transformer'])
     df_to_scale_dict['df_gearbox'] = scaler_df_gearbox.transform(df_to_scale_dict['df_gearbox'])
-    ipdb.set_trace()
 
     # print('017 - Instanciar e treinar o modelo correspondente')
 
