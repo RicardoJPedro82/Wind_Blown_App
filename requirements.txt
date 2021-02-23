@@ -1,4 +1,3 @@
-git+https://github.com/RicardoJPedro82/wmillfailprev.git
 streamlit
 pandas
 numpy
