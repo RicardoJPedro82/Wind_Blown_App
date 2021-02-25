@@ -34,9 +34,11 @@ feat_drop_list = [gen_features_drop, hyd_features_drop, gen_bear_features_drop,t
 
 def main_teste():
 
-    st.markdown("## MACHINE LEARNING Project")#, FONT_SIZE_CSS, unsafe_allow_html=True)
-    st.markdown("## **Blown in the Wind**")
-    st.markdown("Evaluate if the following turbine components are likely to fail in the next **60 to 2 days**: ")
+    st.markdown("# **Blown in the Wind**")#, FONT_SIZE_CSS, unsafe_allow_html=True)
+    st.markdown("### Machine Learning Project")
+    st.markdown("---")
+    # progress_bar = st.progress(100)
+    free_5_test = st.markdown("Objective: Predict the likelyhood of failure of a wind turbine on the main components within the next **2 to 60 days**: ")
     free_1_test = st.markdown("""
 
     - *Generator*
@@ -46,9 +48,9 @@ def main_teste():
     - *Gearbox*
 """)
 
-    free_2_test = st.markdown(""" During the testing period of this predictive model, the savings that were achived with this model implementation were of 57 658 Euros, amounting to around 122 342 Euros. If the model would not be implemented the would amount to 180 000 Euros. """)
-
-    free_3_test = st.markdown(""" ***Start Predicting*** """)
+    free_2_test = st.markdown(""" Evaluation: During the test period we calculated the losses in replacement costs for the onwer of the wind turbines amounting to 180 000 euros, if nothing was done. The implementation of this predictive model would lower the expense amount to 122 342 euros, saving around 57 658 euros in replacement costs during the test period. """)
+    free_3_test = st.markdown("---")
+    free_4_test = st.markdown(""" ***Start Predicting*** """)
 
 
     #font_style=f"""<font color=‘red’>THIS TEXT WILL BE RED</font>"""
@@ -106,37 +108,26 @@ def main_teste():
         free_1_test.empty()
         free_2_test.empty()
         free_3_test.empty()
-        st.write(' ')
+        free_4_test.empty()
+        free_5_test.empty()
+        st.markdown(""" Interpretation: Whenever a bar appears there is a likelyhood that the component of the turbine will fail whithin the next 2 to 60 days. """)
+        # st.write(' ')
 
         # Add a placeholder
-        latest_iteration = st.empty()
-        bar = st.progress(0)
-        for iter in range(2):
-            if iter == 0:
-                for i in range(100):
-                    # Update the progress bar with each iteration.
-                    latest_iteration.text(f'Predicting')
-                    bar.progress(i + 1)
-                    time.sleep(0.01)
-            else:
-                latest_iteration.text(f'Predictions:')
-                bar.empty()
-                @st.cache
-                def get_bar_chart_data():
-                    return train_and_pred(data_pred)
+        @st.cache
+        def get_bar_chart_data():
+            return train_and_pred(data_pred)
 
-                predictions_dict = get_bar_chart_data()
+        predictions_dict = get_bar_chart_data()
 
-                # st.write(filtered_df)
+        # st.write(filtered_df)
 
-                for turbine in predictions_dict[option].Turbine_ID.unique():
-                    st.write(turbine)
-                    st.bar_chart(predictions_dict[option][predictions_dict[option]['Turbine_ID']==turbine]['Predictions'])
-                    # st.write(turbine)
-                # st.write(new_df)
+        for turbine in predictions_dict[option].Turbine_ID.unique():
+            st.write(turbine)
+            st.bar_chart(predictions_dict[option][predictions_dict[option]['Turbine_ID']==turbine]['Predictions'])
+            # st.write(turbine)
+        # st.write(new_df)
 
-    else:
-        st.write(' ')
 
 def train_and_pred(x_train):
     'Todos os passos'
