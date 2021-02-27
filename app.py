@@ -123,7 +123,7 @@ def main_teste():
         # st.write(filtered_df)
 
         for turbine in predictions_dict[option].Turbine_ID.unique():
-            st.write(turbine)
+            st.write(f'Turbina com o código de identificação {turbine}')
             st.bar_chart(predictions_dict[option][predictions_dict[option]['Turbine_ID']==turbine]['Predictions'])
             # st.write(turbine)
         # st.write(new_df)
